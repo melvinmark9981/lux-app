@@ -158,106 +158,96 @@ class SummaryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 160,
-      decoration: BoxDecoration(
-        color: Color(0xFFFF5A7E),
-        borderRadius: BorderRadius.circular(12),
-      ),
-      padding: EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text('RM', style: TextStyle(fontSize: 14, color: Colors.white)),
-            ],
-          ),
-          SizedBox(height: 4),
-          Text(
-            value,
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+    // Use a fixed aspect ratio container with no height constraints
+    return AspectRatio(
+      aspectRatio: 1.3, // Adjust as needed for your design
+      child: Container(
+        decoration: BoxDecoration(
+          color: Color(0xFFFF5A7E),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 12),
+        child: Stack(
+          children: [
+            // Main content
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Top row with RM and Today badge
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'RM',
+                      style: TextStyle(fontSize: 14, color: Colors.white),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        'Today',
+                        style: TextStyle(fontSize: 12, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Value
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+
+                // Growth
+                Text(
+                  growth,
+                  style: TextStyle(fontSize: 14, color: Color(0xFF9FFFA2)),
+                ),
+
+                // Spacer to push the title to bottom
+                Spacer(),
+
+                // Title row with icon
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // Title with ellipsis
+                    Expanded(
+                      child: Text(
+                        title,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    SizedBox(width: 4),
+                    // Icon
+                    Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: Colors.white24,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(icon, color: Colors.white, size: 12),
+                    ),
+                  ],
+                ),
+              ],
             ),
-          ),
-          SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                growth,
-                style: TextStyle(fontSize: 14, color: Color(0xFF9FFFA2)),
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  'Today',
-                  style: TextStyle(fontSize: 12, color: Colors.white),
-                ),
-              ),
-            ],
-          ),
-          Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  color: Colors.white24,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(icon, color: Colors.white, size: 16),
-              ),
-            ],
-          ),
-          SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              SizedBox(width: 4),
-              Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: Colors.white38,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              SizedBox(width: 4),
-              Container(
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  color: Colors.white38,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
