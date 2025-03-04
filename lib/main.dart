@@ -3,7 +3,8 @@ import 'screens/login_screen.dart';
 import 'screens/registration_screen.dart';
 import 'screens/profile_setup_screen.dart';
 import 'screens/profile_page.dart';
-import 'screens/admin_page.dart'; // ✅ Keep if you need an Admin Panel
+import 'screens/admin_page.dart';
+import 'screens/sales_dashboard.dart'; // Import the sales dashboard
 
 void main() {
   runApp(const AppLuxApp());
@@ -27,7 +28,10 @@ class AppLuxApp extends StatelessWidget {
         '/register': (context) => const RegistrationScreen(),
         '/profile_setup': (context) => const ProfileSetupScreen(),
         '/profile': (context) => ProfilePage(),
-        '/admin': (context) => AdminPage(), // Use the correct class name
+        '/admin': (context) => AdminPage(),
+        '/sales_dashboard':
+            (context) =>
+                const SalesDashboard(), // Add the sales dashboard route
       },
     );
   }
